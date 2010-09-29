@@ -10,7 +10,7 @@ use Catalyst::Model::REST::Serializer;
 use LWP::UserAgent;
 use HTTP::Request::Common;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 has 'server' => (
     isa => 'Str',
@@ -75,7 +75,7 @@ sub post {
 	));
 	$self->{code} = $res->code;
 	$self->{response} = $res;
-	return $self->serializer->decode($res->content);
+	return $self->{code} < 300 ? $self->serializer->decode($res->content) : {};
 }
 
 sub get {
@@ -87,7 +87,7 @@ sub get {
 	));
 	$self->{code} = $res->code;
 	$self->{response} = $res;
-	return $self->serializer->decode($res->content);
+	return $self->{code} < 300 ? $self->serializer->decode($res->content) : {};
 }
 
 sub put {
@@ -99,7 +99,7 @@ sub put {
 	));
 	$self->{code} = $res->code;
 	$self->{response} = $res;
-	return $self->serializer->decode($res->content);
+	return $self->{code} < 300 ? $self->serializer->decode($res->content) : {};
 }
 
 sub delete {
@@ -111,7 +111,7 @@ sub delete {
 	));
 	$self->{code} = $res->code;
 	$self->{response} = $res;
-	return $self->serializer->decode($res->content);
+	return $self->{code} < 300 ? $self->serializer->decode($res->content) : {};
 }
 
 __PACKAGE__->meta->make_immutable;
