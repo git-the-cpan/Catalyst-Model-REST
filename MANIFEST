@@ -13,6 +13,7 @@ inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
 inc/Test/More.pm
 lib/Catalyst/Model/REST.pm
+lib/Catalyst/Model/REST/Response.pm
 lib/Catalyst/Model/REST/Serializer.pm
 lib/Catalyst/Model/REST/Serializer/JSON.pm
 lib/Catalyst/Model/REST/Serializer/YAML.pm
