@@ -19,6 +19,7 @@ no_index:
     - t
 requires:
   Catalyst::Model: 0
+  Data::Serializable: 0.40.0
   HTTP::Request::Common: 0
   JSON: 2.12
   JSON::XS: 2.2222
@@ -28,4 +29,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/kaare/Catalyst-Model-REST.git
-version: 0.05
+version: 0.06
