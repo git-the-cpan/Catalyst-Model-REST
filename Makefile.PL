@@ -1,44 +1,62 @@
+
 use strict;
 use warnings;
-use inc::Module::Install;
-use Module::Install::AuthorRequires;
-use Module::Install::AuthorTests;
 
-perl_version '5.10.0';
+BEGIN { require 5.010; }
 
-name 'Catalyst-Model-REST';
-all_from 'lib/Catalyst/Model/REST.pm';
+use ExtUtils::MakeMaker 6.31;
 
-requires 'Moose';
-requires('Try::Tiny'				=> '0');
-requires('Catalyst::Model'			=> '0');
-requires('JSON::XS'					=> '2.2222');
-requires('LWP::UserAgent'			=> '0');
-requires('HTTP::Request::Common'	=> '0');
-requires('Data::Serializable'		=> '0.40.1');
 
-test_requires 'Test::More' => '0.88';
 
-author_requires 'Test::Pod' => 1.14;
-author_requires 'Module::Info';
-author_requires 'File::Find::Rule';
+my %WriteMakefileArgs = (
+  'ABSTRACT' => 'REST model class for Catalyst',
+  'AUTHOR' => 'Kaare Rasmussen <kaare at cpan dot net>',
+  'BUILD_REQUIRES' => {
+    'Module::Build' => '0.3601',
+    'Test::More' => '0'
+  },
+  'CONFIGURE_REQUIRES' => {
+    'ExtUtils::MakeMaker' => '6.31',
+    'Module::Build' => '0.3601'
+  },
+  'DISTNAME' => 'Catalyst-Model-REST',
+  'EXE_FILES' => [],
+  'LICENSE' => 'perl',
+  'NAME' => 'Catalyst::Model::REST',
+  'PREREQ_PM' => {
+    'Carp' => '0',
+    'Catalyst::Model' => '0',
+    'Data::Serializable' => '0',
+    'HTTP::Request::Common' => '0',
+    'LWP::UserAgent' => '0',
+    'Moose' => '0',
+    'Moose::Util::TypeConstraints' => '0',
+    'Try::Tiny' => '0'
+  },
+  'VERSION' => '0.10',
+  'test' => {
+    'TESTS' => 't/*.t'
+  }
+);
 
-feature 'YAML (application/yaml) support',
-	-default   => 0,
-	'JSON'     => '2.12';
-	'YAML::Syck' => '0.67';
 
-author_requires 'YAML::Syck' => '0.67';
-
-auto_include;
-auto_install;
-
-if ($Module::Install::AUTHOR) {
-	system("pod2text lib/Catalyst/Model/REST.pm > README")
-		and die $!;
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
+  my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
+  my $pp = $WriteMakefileArgs{PREREQ_PM};
+  for my $mod ( keys %$br ) {
+    if ( exists $pp->{$mod} ) {
+      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod};
+    }
+    else {
+      $pp->{$mod} = $br->{$mod};
+    }
+  }
 }
 
-repository 'git://github.com/kaare/Catalyst-Model-REST.git';
+delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
+  unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
 
-WriteAll;
+WriteMakefile(%WriteMakefileArgs);
+
+
 
