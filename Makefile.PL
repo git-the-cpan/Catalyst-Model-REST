@@ -12,6 +12,7 @@ my %WriteMakefileArgs = (
   'ABSTRACT' => 'REST model class for Catalyst',
   'AUTHOR' => 'Kaare Rasmussen <kaare at cpan dot net>',
   'BUILD_REQUIRES' => {
+    'JSON::XS' => '0',
     'Module::Build' => '0.3601',
     'Test::More' => '0'
   },
@@ -33,7 +34,7 @@ my %WriteMakefileArgs = (
     'Moose::Util::TypeConstraints' => '0',
     'Try::Tiny' => '0'
   },
-  'VERSION' => '0.10',
+  'VERSION' => '0.11',
   'test' => {
     'TESTS' => 't/*.t'
   }

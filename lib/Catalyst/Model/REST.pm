@@ -1,4 +1,7 @@
 package Catalyst::Model::REST;
+BEGIN {
+  $Catalyst::Model::REST::VERSION = '0.11';
+}
 use 5.010;
 use Moose;
 use Moose::Util::TypeConstraints;
@@ -11,8 +14,6 @@ use Catalyst::Model::REST::Serializer;
 use Catalyst::Model::REST::Response;
 use LWP::UserAgent;
 use HTTP::Request::Common qw/POST GET PUT DELETE/;
-
-our $VERSION = '0.09';
 
 has 'server' => (
     isa => 'Str',
@@ -136,7 +137,7 @@ Catalyst::Model::REST
 
 =head1 VERSION
 
-version 0.10
+version 0.11
 
 =head1 SYNOPSIS
 

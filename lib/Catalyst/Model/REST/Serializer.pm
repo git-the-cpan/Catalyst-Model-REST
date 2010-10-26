@@ -1,4 +1,7 @@
 package Catalyst::Model::REST::Serializer;
+BEGIN {
+  $Catalyst::Model::REST::Serializer::VERSION = '0.11';
+}
 use 5.010;
 use Moose;
 use Moose::Util::TypeConstraints;
@@ -47,7 +50,7 @@ Catalyst::Model::REST::Serializer
 
 =head1 VERSION
 
-version 0.10
+version 0.11
 
 =head1 AUTHOR
 

@@ -7,6 +7,7 @@ use Module::Build 0.3601;
 
 my %module_build_args = (
   'build_requires' => {
+    'JSON::XS' => '0',
     'Module::Build' => '0.3601',
     'Test::More' => '0'
   },
@@ -19,7 +20,7 @@ my %module_build_args = (
     'Kaare Rasmussen <kaare at cpan dot net>'
   ],
   'dist_name' => 'Catalyst-Model-REST',
-  'dist_version' => '0.10',
+  'dist_version' => '0.11',
   'license' => 'perl',
   'module_name' => 'Catalyst::Model::REST',
   'recommends' => {},
