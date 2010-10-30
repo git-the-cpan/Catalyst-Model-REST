@@ -14,7 +14,9 @@ my %WriteMakefileArgs = (
   'BUILD_REQUIRES' => {
     'JSON::XS' => '0',
     'Module::Build' => '0.3601',
-    'Test::More' => '0'
+    'Test::More' => '0',
+    'XML::Simple' => '0',
+    'YAML' => '0'
   },
   'CONFIGURE_REQUIRES' => {
     'ExtUtils::MakeMaker' => '6.31',
@@ -34,7 +36,7 @@ my %WriteMakefileArgs = (
     'Moose::Util::TypeConstraints' => '0',
     'Try::Tiny' => '0'
   },
-  'VERSION' => '0.11',
+  'VERSION' => '0.12',
   'test' => {
     'TESTS' => 't/*.t'
   }

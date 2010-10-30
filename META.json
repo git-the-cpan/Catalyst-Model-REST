@@ -41,7 +41,9 @@
       "test" : {
          "requires" : {
             "JSON::XS" : 0,
-            "Test::More" : 0
+            "Test::More" : 0,
+            "XML::Simple" : 0,
+            "YAML" : 0
          }
       }
    },
@@ -53,6 +55,6 @@
          "web" : "http://github.com/kaare/Catalyst-Model-REST.git"
       }
    },
-   "version" : "0.11"
+   "version" : "0.12"
 }
 
