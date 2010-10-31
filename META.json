@@ -29,7 +29,7 @@
          "requires" : {
             "Carp" : 0,
             "Catalyst::Model" : 0,
-            "Data::Serializable" : 0,
+            "Data::Serializable" : "v0.40.1",
             "HTTP::Request::Common" : 0,
             "LWP::UserAgent" : 0,
             "Moose" : 0,
@@ -55,6 +55,6 @@
          "web" : "http://github.com/kaare/Catalyst-Model-REST.git"
       }
    },
-   "version" : "0.12"
+   "version" : "0.13"
 }
 

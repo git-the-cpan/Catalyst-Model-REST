@@ -1,12 +1,12 @@
 package Catalyst::Model::REST::Serializer;
 BEGIN {
-  $Catalyst::Model::REST::Serializer::VERSION = '0.12';
+  $Catalyst::Model::REST::Serializer::VERSION = '0.13';
 }
 use 5.010;
 use Moose;
 use Moose::Util::TypeConstraints;
 
-with 'Data::Serializable';
+with 'Data::Serializable' => { -version => 0.40.1 };
 
 has 'type' => (
     isa => enum ([qw{application/json application/xml application/yaml}]),
@@ -50,7 +50,7 @@ Catalyst::Model::REST::Serializer
 
 =head1 VERSION
 
-version 0.12
+version 0.13
 
 =head1 AUTHOR
 
