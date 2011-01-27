@@ -4,7 +4,7 @@
       "Kaare Rasmussen <kaare at cpan dot net>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.102342, CPAN::Meta::Converter version 2.102400",
+   "generated_by" : "Dist::Zilla version 4.200000, CPAN::Meta::Converter version 2.102400",
    "license" : [
       "perl_5"
    ],
@@ -30,8 +30,7 @@
             "Carp" : 0,
             "Catalyst::Model" : 0,
             "Data::Serializable" : "v0.40.1",
-            "HTTP::Request::Common" : 0,
-            "LWP::UserAgent" : 0,
+            "HTTP::Tiny" : 0,
             "Moose" : 0,
             "Moose::Util::TypeConstraints" : 0,
             "Try::Tiny" : 0,
@@ -52,9 +51,9 @@
       "repository" : {
          "type" : "git",
          "url" : "git://github.com/kaare/Catalyst-Model-REST.git",
-         "web" : "http://github.com/kaare/Catalyst-Model-REST.git"
+         "web" : "http://github.com/kaare/Catalyst-Model-REST"
       }
    },
-   "version" : "0.13"
+   "version" : "0.14"
 }
 

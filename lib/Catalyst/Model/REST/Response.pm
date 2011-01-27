@@ -1,6 +1,6 @@
 package Catalyst::Model::REST::Response;
 BEGIN {
-  $Catalyst::Model::REST::Response::VERSION = '0.13';
+  $Catalyst::Model::REST::Response::VERSION = '0.14';
 }
 use 5.010;
 use Moose;
@@ -10,7 +10,7 @@ has 'code' => (
     is  => 'ro',
 );
 has 'response' => (
-    isa => 'Object',
+    isa => 'HashRef',
     is  => 'ro',
 );
 has 'data' => (
@@ -31,7 +31,7 @@ Catalyst::Model::REST::Response
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 NAME
 
@@ -41,16 +41,15 @@ Catalyst::Model::REST::Response - Response class for REST
 
 =head2 code
 
-Returns the http code of the request
+Returns the http status code of the request
 
 =head2 response
 
-Returns the response. Shouldn't ordinarily be used
+Returns the raw HTTP::Tiny response. Use this if you need more information than staus and content.
 
 =head2 data
 
-Returns the deserialized data. Returns an emåty hashref
-if the response was unsuccessful
+Returns the deserialized data. Returns an empty hashref if the response was unsuccessful
 
 =head1 AUTHOR
 
@@ -75,7 +74,7 @@ Kaare Rasmussen <kaare at cpan dot net>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Kaare Rasmussen.
+This software is copyright (c) 2011 by Kaare Rasmussen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

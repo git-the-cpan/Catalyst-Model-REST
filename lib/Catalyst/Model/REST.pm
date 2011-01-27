@@ -1,19 +1,18 @@
 package Catalyst::Model::REST;
 BEGIN {
-  $Catalyst::Model::REST::VERSION = '0.13';
+  $Catalyst::Model::REST::VERSION = '0.14';
 }
 use 5.010;
 use Moose;
 use Moose::Util::TypeConstraints;
 use Try::Tiny;
+use HTTP::Tiny;
 
 extends 'Catalyst::Model';
 
 use Carp qw(confess);
 use Catalyst::Model::REST::Serializer;
 use Catalyst::Model::REST::Response;
-use LWP::UserAgent;
-use HTTP::Request::Common qw/POST GET PUT DELETE/;
 
 has 'server' => (
     isa => 'Str',
@@ -48,80 +47,51 @@ sub _serializer {
 
 sub _ua {
 	my ($self) = @_;
-	$self->{ua} ||= LWP::UserAgent->new;
+	$self->{ua} ||= HTTP::Tiny->new;
 	return $self->{ua};
 }
 
-sub post {
-	my ($self, $endpoint, $data) = @_;
+sub _call {
+	my ($self, $method, $endpoint, $data) = @_;
 	my $uri = $self->server.$endpoint;
-	my $res = defined $data ? $self->_ua->request(POST($uri,
-		Content_Type => $self->_serializer->content_type,
-		Content => $self->_serializer->serialize($data)
-	)) : $self->_ua->request(POST($uri));
+	my $res = defined $data ? $self->_ua->request($method, $uri, {
+		headers => { 'content-type' => $self->_serializer->content_type },
+		content => $self->_serializer->serialize($data)
+	}) : $self->_ua->request($method, $uri);
 	# Try to find a serializer for the result content
-	my $content_type = $res->content_type;
+	my $content_type = $res->{headers}{content_type};
 	my $deserializer = $self->_serializer($content_type);
-	my $content = $deserializer ? $deserializer->deserialize($res->content) : {};
+	my $content = $deserializer ? $deserializer->deserialize($res->{content}) : {};
 	return Catalyst::Model::REST::Response->new(
-		code => $res->code,
+		code => $res->{status},
 		response => $res,
 		data => $content,
 	);
 }
 
 sub get {
-	my ($self, $endpoint, $data) = @_;
-	my $uri = $self->server.$endpoint;
-	my $res = defined $data ? $self->_ua->request(GET($uri,
-		Content_Type => $self->_serializer->content_type,
-		Content => $self->_serializer->serialize($data)
-	)) : $self->_ua->request(GET($uri));
-	# Try to find a serializer for the result content
-	my $content_type = $res->content_type;
-	my $deserializer = $self->_serializer($content_type);
-	my $content = $deserializer ? $deserializer->deserialize($res->content) : {};
-	return Catalyst::Model::REST::Response->new(
-		code => $res->code,
-		response => $res,
-		data => $content,
-	);
+	my $self = shift;
+	return $self->_call('GET', @_);
+}
+
+sub post {
+	my $self = shift;
+	return $self->_call('POST', @_);
 }
 
 sub put {
-	my ($self, $endpoint, $data) = @_;
-	my $uri = $self->server.$endpoint;
-	my $res = defined $data ? $self->_ua->request(PUT($uri,
-		Content_Type => $self->_serializer->content_type,
-		Content => $self->_serializer->serialize($data)
-	)) : $self->_ua->request(PUT($uri));
-	# Try to find a serializer for the result content
-	my $content_type = $res->content_type;
-	my $deserializer = $self->_serializer($content_type);
-	my $content = $deserializer ? $deserializer->deserialize($res->content) : {};
-	return Catalyst::Model::REST::Response->new(
-		code => $res->code,
-		response => $res,
-		data => $content,
-	);
+	my $self = shift;
+	return $self->_call('PUT', @_);
 }
 
 sub delete {
-	my ($self, $endpoint, $data) = @_;
-	my $uri = $self->server.$endpoint;
-	my $res = defined $data ? $self->_ua->request(DELETE($uri,
-		Content_Type => $self->_serializer->content_type,
-		Content => $self->_serializer->serialize($data)
-	)) : $self->_ua->request(DELETE($uri));
-	# Try to find a serializer for the result content
-	my $content_type = $res->content_type;
-	my $deserializer = $self->_serializer($content_type);
-	my $content = $deserializer ? $deserializer->deserialize($res->content) : {};
-	return Catalyst::Model::REST::Response->new(
-		code => $res->code,
-		response => $res,
-		data => $content,
-	);
+	my $self = shift;
+	return $self->_call('DELETE', @_);
+}
+
+sub options {
+	my $self = shift;
+	return $self->_call('OPTIONS', @_);
 }
 
 __PACKAGE__->meta->make_immutable;
@@ -133,11 +103,11 @@ __PACKAGE__->meta->make_immutable;
 
 =head1 NAME
 
-Catalyst::Model::REST
+Catalyst::Model::REST - REST model class for Catalyst
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 SYNOPSIS
 
@@ -170,13 +140,20 @@ Catalyst::Model::REST - REST model class for Catalyst
 
 Called from Catalyst.
 
-=head2 post
+=head2 method methods
 
-=head2 get
+Catalyst::Model::REST accepts the standard HTTP 1.1 methods
 
-=head2 put
+	post
+	get
+	put
+	delete
+	options
 
-=head2 delete
+All methods take these parameters
+
+	url - The REST service
+	data - The data structure (hashref, arrayref) to send
 
 =head1 AUTHOR
 
@@ -201,7 +178,7 @@ Kaare Rasmussen <kaare at cpan dot net>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Kaare Rasmussen.
+This software is copyright (c) 2011 by Kaare Rasmussen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
@@ -210,3 +187,4 @@ the same terms as the Perl 5 programming language system itself.
 
 
 __END__
+# ABSTRACT: REST model class for Catalyst

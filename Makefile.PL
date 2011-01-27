@@ -30,13 +30,12 @@ my %WriteMakefileArgs = (
     'Carp' => '0',
     'Catalyst::Model' => '0',
     'Data::Serializable' => '0.40.1',
-    'HTTP::Request::Common' => '0',
-    'LWP::UserAgent' => '0',
+    'HTTP::Tiny' => '0',
     'Moose' => '0',
     'Moose::Util::TypeConstraints' => '0',
     'Try::Tiny' => '0'
   },
-  'VERSION' => '0.13',
+  'VERSION' => '0.14',
   'test' => {
     'TESTS' => 't/*.t'
   }

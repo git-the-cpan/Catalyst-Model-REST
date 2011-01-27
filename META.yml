@@ -12,7 +12,7 @@ configure_requires:
   ExtUtils::MakeMaker: 6.31
   Module::Build: 0.3601
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.102342, CPAN::Meta::Converter version 2.102400'
+generated_by: 'Dist::Zilla version 4.200000, CPAN::Meta::Converter version 2.102400'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -22,12 +22,11 @@ requires:
   Carp: 0
   Catalyst::Model: 0
   Data::Serializable: 0.40.1
-  HTTP::Request::Common: 0
-  LWP::UserAgent: 0
+  HTTP::Tiny: 0
   Moose: 0
   Moose::Util::TypeConstraints: 0
   Try::Tiny: 0
   perl: 5.010
 resources:
   repository: git://github.com/kaare/Catalyst-Model-REST.git
-version: 0.13
+version: 0.14

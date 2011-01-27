@@ -13,7 +13,6 @@ lib/Catalyst/Model/REST.pm
 lib/Catalyst/Model/REST/Response.pm
 lib/Catalyst/Model/REST/Serializer.pm
 t/boilerplate.t
-t/pod-coverage.t
 t/pod.t
 t/rest.t
 t/serializer.t

@@ -22,7 +22,7 @@ my %module_build_args = (
     'Kaare Rasmussen <kaare at cpan dot net>'
   ],
   'dist_name' => 'Catalyst-Model-REST',
-  'dist_version' => '0.13',
+  'dist_version' => '0.14',
   'license' => 'perl',
   'module_name' => 'Catalyst::Model::REST',
   'recommends' => {},
@@ -31,8 +31,7 @@ my %module_build_args = (
     'Carp' => '0',
     'Catalyst::Model' => '0',
     'Data::Serializable' => '0.40.1',
-    'HTTP::Request::Common' => '0',
-    'LWP::UserAgent' => '0',
+    'HTTP::Tiny' => '0',
     'Moose' => '0',
     'Moose::Util::TypeConstraints' => '0',
     'Try::Tiny' => '0',

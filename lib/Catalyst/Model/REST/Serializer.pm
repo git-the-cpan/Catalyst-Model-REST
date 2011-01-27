@@ -1,12 +1,12 @@
 package Catalyst::Model::REST::Serializer;
 BEGIN {
-  $Catalyst::Model::REST::Serializer::VERSION = '0.13';
+  $Catalyst::Model::REST::Serializer::VERSION = '0.14';
 }
 use 5.010;
 use Moose;
 use Moose::Util::TypeConstraints;
 
-with 'Data::Serializable' => { -version => 0.40.1 };
+with 'Data::Serializable' => { -version => '0.40.1' };
 
 has 'type' => (
     isa => enum ([qw{application/json application/xml application/yaml}]),
@@ -41,6 +41,7 @@ sub content_type {
 }
 
 1;
+
 __END__
 =pod
 
@@ -50,7 +51,7 @@ Catalyst::Model::REST::Serializer
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 AUTHOR
 
@@ -58,7 +59,7 @@ Kaare Rasmussen <kaare at cpan dot net>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Kaare Rasmussen.
+This software is copyright (c) 2011 by Kaare Rasmussen.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
