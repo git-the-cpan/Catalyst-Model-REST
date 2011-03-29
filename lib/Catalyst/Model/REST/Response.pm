@@ -1,6 +1,6 @@
 package Catalyst::Model::REST::Response;
 BEGIN {
-  $Catalyst::Model::REST::Response::VERSION = '0.14';
+  $Catalyst::Model::REST::Response::VERSION = '0.15';
 }
 use 5.010;
 use Moose;
@@ -31,7 +31,7 @@ Catalyst::Model::REST::Response
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 NAME
 
@@ -45,7 +45,7 @@ Returns the http status code of the request
 
 =head2 response
 
-Returns the raw HTTP::Tiny response. Use this if you need more information than staus and content.
+Returns the raw HTTP::Tiny response. Use this if you need more information than status and content.
 
 =head2 data
 

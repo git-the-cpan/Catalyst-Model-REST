@@ -1,6 +1,6 @@
 package Catalyst::Model::REST::Serializer;
 BEGIN {
-  $Catalyst::Model::REST::Serializer::VERSION = '0.14';
+  $Catalyst::Model::REST::Serializer::VERSION = '0.15';
 }
 use 5.010;
 use Moose;
@@ -51,7 +51,7 @@ Catalyst::Model::REST::Serializer
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 AUTHOR
 

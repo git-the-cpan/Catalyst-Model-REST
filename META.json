@@ -4,7 +4,7 @@
       "Kaare Rasmussen <kaare at cpan dot net>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.200000, CPAN::Meta::Converter version 2.102400",
+   "generated_by" : "Dist::Zilla version 4.200004, CPAN::Meta::Converter version 2.110440",
    "license" : [
       "perl_5"
    ],
@@ -54,6 +54,6 @@
          "web" : "http://github.com/kaare/Catalyst-Model-REST"
       }
    },
-   "version" : "0.14"
+   "version" : "0.15"
 }
 
