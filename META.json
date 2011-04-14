@@ -34,6 +34,7 @@
             "Moose" : 0,
             "Moose::Util::TypeConstraints" : 0,
             "Try::Tiny" : 0,
+            "URI::Escape" : 0,
             "perl" : "5.010"
          }
       },
@@ -54,6 +55,6 @@
          "web" : "http://github.com/kaare/Catalyst-Model-REST"
       }
    },
-   "version" : "0.15"
+   "version" : "0.16"
 }
 

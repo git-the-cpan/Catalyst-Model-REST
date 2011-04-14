@@ -22,7 +22,7 @@ my %module_build_args = (
     'Kaare Rasmussen <kaare at cpan dot net>'
   ],
   'dist_name' => 'Catalyst-Model-REST',
-  'dist_version' => '0.15',
+  'dist_version' => '0.16',
   'license' => 'perl',
   'module_name' => 'Catalyst::Model::REST',
   'recommends' => {},
@@ -35,6 +35,7 @@ my %module_build_args = (
     'Moose' => '0',
     'Moose::Util::TypeConstraints' => '0',
     'Try::Tiny' => '0',
+    'URI::Escape' => '0',
     'perl' => '5.010'
   },
   'script_files' => []

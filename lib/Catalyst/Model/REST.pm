@@ -1,12 +1,12 @@
 package Catalyst::Model::REST;
 BEGIN {
-  $Catalyst::Model::REST::VERSION = '0.15';
+  $Catalyst::Model::REST::VERSION = '0.16';
 }
 use 5.010;
 use Moose;
 use Moose::Util::TypeConstraints;
-use Try::Tiny;
 use HTTP::Tiny;
+use URI::Escape;
 
 extends 'Catalyst::Model';
 
@@ -21,10 +21,11 @@ has 'server' => (
 	builder => '_build_server',
 );
 has 'type' => (
-    isa => enum ([qw{application/json application/xml application/yaml}]),
+    isa => enum ([qw{application/json application/xml application/yaml application/x-www-form-urlencoded}]),
     is  => 'rw',
 	default => 'json',
 );
+has clientattrs => (isa => 'HashRef', is => 'ro', default => sub {return {} });
 
 no Moose::Util::TypeConstraints;
 
@@ -36,35 +37,33 @@ sub _build_server {
 sub _serializer {
 	my ($self, $type) = @_;
 	$type ||= $self->type;
-	try {
-		$self->{serializer}{$type} ||= Catalyst::Model::REST::Serializer->new(type => $type);
-	} catch {
-		# Spell it out
-		undef $self->{serializer}{$type};
-	};
+	$self->{serializer}{$type} ||= Catalyst::Model::REST::Serializer->new(type => $type);
 	return $self->{serializer}{$type};
 }
 
 sub _ua {
 	my ($self) = @_;
-	$self->{ua} ||= HTTP::Tiny->new;
+	$self->{ua} ||= HTTP::Tiny->new(%{$self->clientattrs});
 	return $self->{ua};
 }
 
 sub _call {
 	my ($self, $method, $endpoint, $data) = @_;
 	my $uri = $self->server.$endpoint;
+	# If no data, just call endpoint (or uri if GET w/parameters)
+	# If data is a scalar, call endpoint with data as content (POST w/parameters)
+	# Otherwise, encode data
 	my $res = defined $data ? $self->_ua->request($method, $uri, {
 		headers => { 'content-type' => $self->_serializer->content_type },
-		content => $self->_serializer->serialize($data)
+		content => ref $data ? $self->_serializer->serialize($data) : $data
 	}) : $self->_ua->request($method, $uri);
 	# Return an error if status 5XX
 	return { code =>  $res->{status}, error => $res->{reason}} if $res->{status} > 499;
 
 	# Try to find a serializer for the result content
-	my $content_type = $res->{headers}{content_type};
+	my $content_type = $res->{headers}{content_type} || $res->{headers}{'content-type'};
 	my $deserializer = $self->_serializer($content_type);
-	my $content = $deserializer ? $deserializer->deserialize($res->{content}) : {};
+	my $content = $deserializer && $res->{content} ? $deserializer->deserialize($res->{content}) : {};
 	return Catalyst::Model::REST::Response->new(
 		code => $res->{status},
 		response => $res,
@@ -73,12 +72,20 @@ sub _call {
 }
 
 sub get {
-	my $self = shift;
-	return $self->_call('GET', @_);
+	my ($self, $endpoint, $data) = @_;
+	my $uri = $endpoint;
+	if ($self->type =~ /urlencoded/ and my %data = %{ $data }) {
+		$uri .= '?' . join '&', map { uri_escape($_) . '=' . uri_escape($data{$_})} keys %data;
+	}
+	return $self->_call('GET', $uri);
 }
 
 sub post {
-	my $self = shift;
+	my ($self, $endpoint, $data) = @_;
+	if ($self->type =~ /urlencoded/ and my %data = %{ $data }) {
+		my $content = join '&', map { uri_escape($_) . '=' . uri_escape($data{$_})} keys %data;
+		return $self->_call('POST', $endpoint, $content);
+	}
 	return $self->_call('POST', @_);
 }
 
@@ -110,14 +117,15 @@ Catalyst::Model::REST - REST model class for Catalyst
 
 =head1 VERSION
 
-version 0.15
+version 0.16
 
 =head1 SYNOPSIS
 
 	# model
 	__PACKAGE__->config(
-		server => 'http://localhost:3000',
-		type   => 'application/json',
+		server =>      'http://localhost:3000',
+		type   =>      'application/json',
+		clientattrs => {timeout => 5},
 	);
 
 	# controller
@@ -157,6 +165,26 @@ All methods take these parameters
 
 	url - The REST service
 	data - The data structure (hashref, arrayref) to send
+
+=head1 ATTRIBUTES
+
+=head2 server
+
+Url of the REST server.
+
+e.g. 'http://localhost:3000'
+
+=head2 type
+
+Mime content type,
+
+e.g. application/json
+
+=head2 clientattrs
+
+Attributes to feed HTTP::Tiny
+
+e.g. {timeout => 10}
 
 =head1 AUTHOR
 

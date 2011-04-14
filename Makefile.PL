@@ -33,9 +33,10 @@ my %WriteMakefileArgs = (
     'HTTP::Tiny' => '0',
     'Moose' => '0',
     'Moose::Util::TypeConstraints' => '0',
-    'Try::Tiny' => '0'
+    'Try::Tiny' => '0',
+    'URI::Escape' => '0'
   },
-  'VERSION' => '0.15',
+  'VERSION' => '0.16',
   'test' => {
     'TESTS' => 't/*.t'
   }
