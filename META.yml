@@ -9,10 +9,10 @@ build_requires:
   XML::Simple: 0
   YAML: 0
 configure_requires:
-  ExtUtils::MakeMaker: 6.31
+  ExtUtils::MakeMaker: 6.30
   Module::Build: 0.3601
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.200004, CPAN::Meta::Converter version 2.110440'
+generated_by: 'Dist::Zilla version 4.200006, CPAN::Meta::Converter version 2.110440'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -21,7 +21,7 @@ name: Catalyst-Model-REST
 requires:
   Carp: 0
   Catalyst::Model: 0
-  Data::Serializable: 0.40.1
+  Data::Serializer: 0
   HTTP::Tiny: 0
   Moose: 0
   Moose::Util::TypeConstraints: 0
@@ -30,4 +30,4 @@ requires:
   perl: 5.010
 resources:
   repository: git://github.com/kaare/Catalyst-Model-REST.git
-version: 0.16
+version: 0.17

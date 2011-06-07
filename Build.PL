@@ -14,7 +14,7 @@ my %module_build_args = (
     'YAML' => '0'
   },
   'configure_requires' => {
-    'ExtUtils::MakeMaker' => '6.31',
+    'ExtUtils::MakeMaker' => '6.30',
     'Module::Build' => '0.3601'
   },
   'dist_abstract' => 'REST model class for Catalyst',
@@ -22,7 +22,7 @@ my %module_build_args = (
     'Kaare Rasmussen <kaare at cpan dot net>'
   ],
   'dist_name' => 'Catalyst-Model-REST',
-  'dist_version' => '0.16',
+  'dist_version' => '0.17',
   'license' => 'perl',
   'module_name' => 'Catalyst::Model::REST',
   'recommends' => {},
@@ -30,7 +30,7 @@ my %module_build_args = (
   'requires' => {
     'Carp' => '0',
     'Catalyst::Model' => '0',
-    'Data::Serializable' => '0.40.1',
+    'Data::Serializer' => '0',
     'HTTP::Tiny' => '0',
     'Moose' => '0',
     'Moose::Util::TypeConstraints' => '0',

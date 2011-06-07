@@ -4,7 +4,7 @@
       "Kaare Rasmussen <kaare at cpan dot net>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.200004, CPAN::Meta::Converter version 2.110440",
+   "generated_by" : "Dist::Zilla version 4.200006, CPAN::Meta::Converter version 2.110440",
    "license" : [
       "perl_5"
    ],
@@ -21,7 +21,7 @@
       },
       "configure" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "6.31",
+            "ExtUtils::MakeMaker" : "6.30",
             "Module::Build" : "0.3601"
          }
       },
@@ -29,7 +29,7 @@
          "requires" : {
             "Carp" : 0,
             "Catalyst::Model" : 0,
-            "Data::Serializable" : "v0.40.1",
+            "Data::Serializer" : 0,
             "HTTP::Tiny" : 0,
             "Moose" : 0,
             "Moose::Util::TypeConstraints" : 0,
@@ -55,6 +55,6 @@
          "web" : "http://github.com/kaare/Catalyst-Model-REST"
       }
    },
-   "version" : "0.16"
+   "version" : "0.17"
 }
 

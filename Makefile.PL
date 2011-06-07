@@ -4,7 +4,7 @@ use warnings;
 
 BEGIN { require 5.010; }
 
-use ExtUtils::MakeMaker 6.31;
+use ExtUtils::MakeMaker 6.30;
 
 
 
@@ -19,7 +19,7 @@ my %WriteMakefileArgs = (
     'YAML' => '0'
   },
   'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.31',
+    'ExtUtils::MakeMaker' => '6.30',
     'Module::Build' => '0.3601'
   },
   'DISTNAME' => 'Catalyst-Model-REST',
@@ -29,14 +29,14 @@ my %WriteMakefileArgs = (
   'PREREQ_PM' => {
     'Carp' => '0',
     'Catalyst::Model' => '0',
-    'Data::Serializable' => '0.40.1',
+    'Data::Serializer' => '0',
     'HTTP::Tiny' => '0',
     'Moose' => '0',
     'Moose::Util::TypeConstraints' => '0',
     'Try::Tiny' => '0',
     'URI::Escape' => '0'
   },
-  'VERSION' => '0.16',
+  'VERSION' => '0.17',
   'test' => {
     'TESTS' => 't/*.t'
   }

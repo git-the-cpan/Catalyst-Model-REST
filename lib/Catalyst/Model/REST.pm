@@ -1,6 +1,6 @@
 package Catalyst::Model::REST;
 BEGIN {
-  $Catalyst::Model::REST::VERSION = '0.16';
+  $Catalyst::Model::REST::VERSION = '0.17';
 }
 use 5.010;
 use Moose;
@@ -53,12 +53,16 @@ sub _call {
 	# If no data, just call endpoint (or uri if GET w/parameters)
 	# If data is a scalar, call endpoint with data as content (POST w/parameters)
 	# Otherwise, encode data
-	my $res = defined $data ? $self->_ua->request($method, $uri, {
+	my %options = (
 		headers => { 'content-type' => $self->_serializer->content_type },
-		content => ref $data ? $self->_serializer->serialize($data) : $data
-	}) : $self->_ua->request($method, $uri);
+	);
+	$options{content} = ref $data ? $self->_serializer->serialize($data) : $data if defined $data;
+	my $res = $self->_ua->request($method, $uri, %options);
 	# Return an error if status 5XX
-	return { code =>  $res->{status}, error => $res->{reason}} if $res->{status} > 499;
+	return Catalyst::Model::REST::Response->new(
+		code => $res->{status},
+		error => $res->{reason},
+	) if $res->{status} > 499;
 
 	# Try to find a serializer for the result content
 	my $content_type = $res->{headers}{content_type} || $res->{headers}{'content-type'};
@@ -81,7 +85,8 @@ sub get {
 }
 
 sub post {
-	my ($self, $endpoint, $data) = @_;
+	my $self = shift;
+	my ($endpoint, $data) = @_;
 	if ($self->type =~ /urlencoded/ and my %data = %{ $data }) {
 		my $content = join '&', map { uri_escape($_) . '=' . uri_escape($data{$_})} keys %data;
 		return $self->_call('POST', $endpoint, $content);
@@ -117,9 +122,11 @@ Catalyst::Model::REST - REST model class for Catalyst
 
 =head1 VERSION
 
-version 0.16
+version 0.17
 
 =head1 SYNOPSIS
+
+Use from a controller
 
 	# model
 	__PACKAGE__->config(
@@ -137,9 +144,36 @@ version 0.16
 		...
 	}
 
+For internal use
+
+       # model
+       sub model_foo {
+               my ($self) = @_;
+               my $res = $self->post('foo/bar/baz', {foo => 'bar'});
+               my $code = $res->code;
+               my $data = $res->data;
+               return $data if $code == 200;
+       }
+
 =head1 DESCRIPTION
 
-This model class makes REST connectivety easy.
+This Catalyst Model class makes REST connectivety easy.
+
+Catalyst::Model::REST will handle encoding and decoding when using the four HTTP verbs.
+
+	GET
+	PUT
+	POST
+	DELETE
+
+Currently Catalyst::Model::REST supports these encodings
+
+	application/json
+	application/x-www-form-urlencoded
+	application/xml
+	application/yaml
+
+x-www-form-urlencoded only works for GET and POST, and only for encoding, not decoding.
 
 =head1 NAME
 
@@ -151,22 +185,26 @@ Catalyst::Model::REST - REST model class for Catalyst
 
 Called from Catalyst.
 
-=head2 method methods
+=head2 methods
 
-Catalyst::Model::REST accepts the standard HTTP 1.1 methods
+Catalyst::Model::REST implements the standard HTTP 1.1 verbs as methods
 
 	post
 	get
 	put
 	delete
-	options
 
 All methods take these parameters
 
 	url - The REST service
-	data - The data structure (hashref, arrayref) to send
+	data - The data structure (hashref, arrayref) to send. The data will be encoded
+	according to the value of the I<type> attribute.
+
+All methods return a L<Catalyst::Model::REST::Response> object.
 
 =head1 ATTRIBUTES
+
+Attributes can be set in your application's configuration file. See L<Catalyst::Manual>.
 
 =head2 server
 
