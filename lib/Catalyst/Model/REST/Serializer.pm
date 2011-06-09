@@ -1,6 +1,6 @@
 package Catalyst::Model::REST::Serializer;
 BEGIN {
-  $Catalyst::Model::REST::Serializer::VERSION = '0.17';
+  $Catalyst::Model::REST::Serializer::VERSION = '0.18';
 }
 use 5.010;
 use Try::Tiny;
@@ -77,7 +77,7 @@ Catalyst::Model::REST::Serializer
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 AUTHOR
 

@@ -40,6 +40,9 @@
       },
       "test" : {
          "requires" : {
+            "Data::Serializer::JSON" : 0,
+            "Data::Serializer::XML::Simple" : 0,
+            "Data::Serializer::YAML" : 0,
             "JSON::XS" : 0,
             "Test::More" : 0,
             "XML::Simple" : 0,
@@ -55,6 +58,6 @@
          "web" : "http://github.com/kaare/Catalyst-Model-REST"
       }
    },
-   "version" : "0.17"
+   "version" : "0.18"
 }
 

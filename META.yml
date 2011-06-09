@@ -3,6 +3,9 @@ abstract: 'REST model class for Catalyst'
 author:
   - 'Kaare Rasmussen <kaare at cpan dot net>'
 build_requires:
+  Data::Serializer::JSON: 0
+  Data::Serializer::XML::Simple: 0
+  Data::Serializer::YAML: 0
   JSON::XS: 0
   Module::Build: 0.3601
   Test::More: 0
@@ -30,4 +33,4 @@ requires:
   perl: 5.010
 resources:
   repository: git://github.com/kaare/Catalyst-Model-REST.git
-version: 0.17
+version: 0.18

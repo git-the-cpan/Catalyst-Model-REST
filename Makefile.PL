@@ -12,6 +12,9 @@ my %WriteMakefileArgs = (
   'ABSTRACT' => 'REST model class for Catalyst',
   'AUTHOR' => 'Kaare Rasmussen <kaare at cpan dot net>',
   'BUILD_REQUIRES' => {
+    'Data::Serializer::JSON' => '0',
+    'Data::Serializer::XML::Simple' => '0',
+    'Data::Serializer::YAML' => '0',
     'JSON::XS' => '0',
     'Module::Build' => '0.3601',
     'Test::More' => '0',
@@ -36,7 +39,7 @@ my %WriteMakefileArgs = (
     'Try::Tiny' => '0',
     'URI::Escape' => '0'
   },
-  'VERSION' => '0.17',
+  'VERSION' => '0.18',
   'test' => {
     'TESTS' => 't/*.t'
   }
