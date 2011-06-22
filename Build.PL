@@ -7,6 +7,7 @@ use Module::Build 0.3601;
 
 my %module_build_args = (
   'build_requires' => {
+    'Data::Serializer' => '0',
     'Data::Serializer::JSON' => '0',
     'Data::Serializer::XML::Simple' => '0',
     'Data::Serializer::YAML' => '0',
@@ -25,7 +26,7 @@ my %module_build_args = (
     'Kaare Rasmussen <kaare at cpan dot net>'
   ],
   'dist_name' => 'Catalyst-Model-REST',
-  'dist_version' => '0.18',
+  'dist_version' => '0.19',
   'license' => 'perl',
   'module_name' => 'Catalyst::Model::REST',
   'recommends' => {},
