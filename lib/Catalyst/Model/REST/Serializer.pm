@@ -1,6 +1,6 @@
 package Catalyst::Model::REST::Serializer;
 BEGIN {
-  $Catalyst::Model::REST::Serializer::VERSION = '0.19';
+  $Catalyst::Model::REST::Serializer::VERSION = '0.20';
 }
 use 5.010;
 use Try::Tiny;
@@ -58,12 +58,30 @@ sub content_type {
 
 sub serialize {
 	my ($self, $data) = @_;
-	return $self->serializer ? $self->serializer->raw_serialize($data) : undef;
+	return unless $self->serializer;
+
+	my $result;
+	try {
+		$result = $self->serializer->raw_serialize($data)
+	} catch {
+		warn "Couldn't serialize data with " . $self->type;
+	};
+
+	return $result;
 }
 
 sub deserialize {
 	my ($self, $data) = @_;
-	return $self->serializer ? $self->serializer->raw_deserialize($data) : undef;
+	return unless $self->serializer;
+
+	my $result;
+	try {
+		$result = $self->serializer->raw_deserialize($data);
+	} catch {
+		warn "Couldn't deserialize data with " . $self->type;
+	};
+
+	return $result;
 }
 
 1;
@@ -77,7 +95,7 @@ Catalyst::Model::REST::Serializer
 
 =head1 VERSION
 
-version 0.19
+version 0.20
 
 =head1 AUTHOR
 
