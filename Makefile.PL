@@ -16,9 +16,9 @@ my %WriteMakefileArgs = (
     'Data::Serializer::JSON' => '0',
     'Data::Serializer::XML::Simple' => '0',
     'Data::Serializer::YAML' => '0',
-    'JSON::XS' => '0',
+    'JSON' => '2.00',
     'Module::Build' => '0.3601',
-    'Test::More' => '0',
+    'Test::More' => '0.88',
     'XML::Simple' => '0',
     'YAML' => '0'
   },
@@ -40,7 +40,7 @@ my %WriteMakefileArgs = (
     'Try::Tiny' => '0',
     'URI::Escape' => '0'
   },
-  'VERSION' => '0.20',
+  'VERSION' => '0.21',
   'test' => {
     'TESTS' => 't/*.t'
   }

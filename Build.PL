@@ -11,9 +11,9 @@ my %module_build_args = (
     'Data::Serializer::JSON' => '0',
     'Data::Serializer::XML::Simple' => '0',
     'Data::Serializer::YAML' => '0',
-    'JSON::XS' => '0',
+    'JSON' => '2.00',
     'Module::Build' => '0.3601',
-    'Test::More' => '0',
+    'Test::More' => '0.88',
     'XML::Simple' => '0',
     'YAML' => '0'
   },
@@ -26,7 +26,7 @@ my %module_build_args = (
     'Kaare Rasmussen <kaare at cpan dot net>'
   ],
   'dist_name' => 'Catalyst-Model-REST',
-  'dist_version' => '0.20',
+  'dist_version' => '0.21',
   'license' => 'perl',
   'module_name' => 'Catalyst::Model::REST',
   'recommends' => {},
