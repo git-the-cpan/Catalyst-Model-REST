@@ -9,40 +9,42 @@ use ExtUtils::MakeMaker 6.30;
 
 
 my %WriteMakefileArgs = (
-  'ABSTRACT' => 'REST model class for Catalyst',
-  'AUTHOR' => 'Kaare Rasmussen <kaare at cpan dot net>',
-  'BUILD_REQUIRES' => {
-    'Data::Serializer' => '0',
-    'Data::Serializer::JSON' => '0',
-    'Data::Serializer::XML::Simple' => '0',
-    'Data::Serializer::YAML' => '0',
-    'JSON' => '2.00',
-    'Module::Build' => '0.3601',
-    'Test::More' => '0.88',
-    'XML::Simple' => '0',
-    'YAML' => '0'
+  "ABSTRACT" => "REST model class for Catalyst",
+  "AUTHOR" => "Kaare Rasmussen <kaare at cpan dot net>",
+  "BUILD_REQUIRES" => {
+    "Data::Serializer" => 0,
+    "Data::Serializer::JSON" => 0,
+    "Data::Serializer::XML::Simple" => 0,
+    "Data::Serializer::YAML" => 0,
+    "JSON" => "2.00",
+    "Module::Build" => "0.3601",
+    "Test::More" => "0.88",
+    "XML::Simple" => 0,
+    "YAML" => 0,
+    "strict" => 0,
+    "warnings" => 0
   },
-  'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.30',
-    'Module::Build' => '0.3601'
+  "CONFIGURE_REQUIRES" => {
+    "ExtUtils::MakeMaker" => "6.30",
+    "Module::Build" => "0.3601"
   },
-  'DISTNAME' => 'Catalyst-Model-REST',
-  'EXE_FILES' => [],
-  'LICENSE' => 'perl',
-  'NAME' => 'Catalyst::Model::REST',
-  'PREREQ_PM' => {
-    'Carp' => '0',
-    'Catalyst::Model' => '0',
-    'Data::Serializer' => '0',
-    'HTTP::Tiny' => '0',
-    'Moose' => '0',
-    'Moose::Util::TypeConstraints' => '0',
-    'Try::Tiny' => '0',
-    'URI::Escape' => '0'
+  "DISTNAME" => "Catalyst-Model-REST",
+  "EXE_FILES" => [],
+  "LICENSE" => "perl",
+  "NAME" => "Catalyst::Model::REST",
+  "PREREQ_PM" => {
+    "Carp" => 0,
+    "Catalyst::Model" => 0,
+    "Data::Serializer" => 0,
+    "HTTP::Tiny" => 0,
+    "Moose" => 0,
+    "Moose::Util::TypeConstraints" => 0,
+    "Try::Tiny" => 0,
+    "URI::Escape" => 0
   },
-  'VERSION' => '0.22',
-  'test' => {
-    'TESTS' => 't/*.t'
+  "VERSION" => "0.23",
+  "test" => {
+    "TESTS" => "t/*.t"
   }
 );
 

@@ -1,6 +1,6 @@
 package Catalyst::Model::REST::Response;
-BEGIN {
-  $Catalyst::Model::REST::Response::VERSION = '0.22';
+{
+  $Catalyst::Model::REST::Response::VERSION = '0.23';
 }
 use 5.010;
 use Moose;
@@ -35,7 +35,7 @@ Catalyst::Model::REST::Response
 
 =head1 VERSION
 
-version 0.22
+version 0.23
 
 =head1 NAME
 

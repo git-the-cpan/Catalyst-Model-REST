@@ -1,6 +1,6 @@
 package Catalyst::Model::REST;
-BEGIN {
-  $Catalyst::Model::REST::VERSION = '0.22';
+{
+  $Catalyst::Model::REST::VERSION = '0.23';
 }
 use 5.010;
 use Moose;
@@ -91,18 +91,18 @@ sub _call {
 sub get {
 	my ($self, $endpoint, $data, $args) = @_;
 	my $uri = $endpoint;
-	if ($self->type =~ /urlencoded/ and my %data = %{ $data }) {
+	if (my %data = %{ $data }) {
 		$uri .= '?' . join '&', map { uri_escape($_) . '=' . uri_escape($data{$_})} keys %data;
 	}
-	return $self->_call('GET', $uri, $data, $args);
+	return $self->_call('GET', $uri, undef, $args);
 }
 
 sub post {
 	my $self = shift;
-	my ($endpoint, $data) = @_;
-	if (my %data = %{ $data }) {
+	my ($endpoint, $data, $args) = @_;
+	if ($self->type =~ /urlencoded/ and my %data = %{ $data }) {
 		my $content = join '&', map { uri_escape($_) . '=' . uri_escape($data{$_})} keys %data;
-		return $self->_call('POST', $endpoint, $content);
+		return $self->_call('POST', $endpoint, $content, $args);
 	}
 	return $self->_call('POST', @_);
 }
@@ -135,7 +135,7 @@ Catalyst::Model::REST - REST model class for Catalyst
 
 =head1 VERSION
 
-version 0.22
+version 0.23
 
 =head1 SYNOPSIS
 

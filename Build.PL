@@ -6,43 +6,45 @@ use Module::Build 0.3601;
 
 
 my %module_build_args = (
-  'build_requires' => {
-    'Data::Serializer' => '0',
-    'Data::Serializer::JSON' => '0',
-    'Data::Serializer::XML::Simple' => '0',
-    'Data::Serializer::YAML' => '0',
-    'JSON' => '2.00',
-    'Module::Build' => '0.3601',
-    'Test::More' => '0.88',
-    'XML::Simple' => '0',
-    'YAML' => '0'
+  "build_requires" => {
+    "Data::Serializer" => 0,
+    "Data::Serializer::JSON" => 0,
+    "Data::Serializer::XML::Simple" => 0,
+    "Data::Serializer::YAML" => 0,
+    "JSON" => "2.00",
+    "Module::Build" => "0.3601",
+    "Test::More" => "0.88",
+    "XML::Simple" => 0,
+    "YAML" => 0,
+    "strict" => 0,
+    "warnings" => 0
   },
-  'configure_requires' => {
-    'ExtUtils::MakeMaker' => '6.30',
-    'Module::Build' => '0.3601'
+  "configure_requires" => {
+    "ExtUtils::MakeMaker" => "6.30",
+    "Module::Build" => "0.3601"
   },
-  'dist_abstract' => 'REST model class for Catalyst',
-  'dist_author' => [
-    'Kaare Rasmussen <kaare at cpan dot net>'
+  "dist_abstract" => "REST model class for Catalyst",
+  "dist_author" => [
+    "Kaare Rasmussen <kaare at cpan dot net>"
   ],
-  'dist_name' => 'Catalyst-Model-REST',
-  'dist_version' => '0.22',
-  'license' => 'perl',
-  'module_name' => 'Catalyst::Model::REST',
-  'recommends' => {},
-  'recursive_test_files' => 1,
-  'requires' => {
-    'Carp' => '0',
-    'Catalyst::Model' => '0',
-    'Data::Serializer' => '0',
-    'HTTP::Tiny' => '0',
-    'Moose' => '0',
-    'Moose::Util::TypeConstraints' => '0',
-    'Try::Tiny' => '0',
-    'URI::Escape' => '0',
-    'perl' => '5.010'
+  "dist_name" => "Catalyst-Model-REST",
+  "dist_version" => "0.23",
+  "license" => "perl",
+  "module_name" => "Catalyst::Model::REST",
+  "recommends" => {},
+  "recursive_test_files" => 1,
+  "requires" => {
+    "Carp" => 0,
+    "Catalyst::Model" => 0,
+    "Data::Serializer" => 0,
+    "HTTP::Tiny" => 0,
+    "Moose" => 0,
+    "Moose::Util::TypeConstraints" => 0,
+    "Try::Tiny" => 0,
+    "URI::Escape" => 0,
+    "perl" => "5.010"
   },
-  'script_files' => []
+  "script_files" => []
 );
 
 
