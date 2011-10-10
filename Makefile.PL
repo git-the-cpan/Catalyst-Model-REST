@@ -42,7 +42,7 @@ my %WriteMakefileArgs = (
     "Try::Tiny" => 0,
     "URI::Escape" => 0
   },
-  "VERSION" => "0.23",
+  "VERSION" => "0.24",
   "test" => {
     "TESTS" => "t/*.t"
   }

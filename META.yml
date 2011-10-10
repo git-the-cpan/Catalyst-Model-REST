@@ -36,4 +36,4 @@ requires:
   perl: 5.010
 resources:
   repository: git://github.com/kaare/Catalyst-Model-REST.git
-version: 0.23
+version: 0.24

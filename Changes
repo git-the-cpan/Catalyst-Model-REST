@@ -1,5 +1,9 @@
 Revision history for Catalyst-Model-REST
 
+0.24    2011-10-10 19:23:36 Europe/Copenhagen
+  - Better handling of the return content. Perhaps the content isn't
+    deserializable
+
 0.23    2011-10-09 16:19:03 Europe/Copenhagen
 
 0.22    2011-07-29 06:06:53 Europe/Copenhagen

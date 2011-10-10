@@ -1,6 +1,6 @@
 package Catalyst::Model::REST;
 {
-  $Catalyst::Model::REST::VERSION = '0.23';
+  $Catalyst::Model::REST::VERSION = '0.24';
 }
 use 5.010;
 use Moose;
@@ -78,9 +78,9 @@ sub _call {
 	my $content_type = $args->{deserializer} || $res->{headers}{content_type} || $res->{headers}{'content-type'};
 	my $deserializer = $self->_serializer($content_type);
 	# Try to deserialize
-	my $content = $deserializer && $res->{content} ?
-	 $deserializer->deserialize($res->{content}) :
-	{};
+	my $content;
+	$content = $deserializer->deserialize($res->{content}) if $deserializer && $res->{content};
+	$content ||= {};
 	return Catalyst::Model::REST::Response->new(
 		code => $res->{status},
 		response => $res,
@@ -91,7 +91,7 @@ sub _call {
 sub get {
 	my ($self, $endpoint, $data, $args) = @_;
 	my $uri = $endpoint;
-	if (my %data = %{ $data }) {
+	if (my %data = %{ $data || {} }) {
 		$uri .= '?' . join '&', map { uri_escape($_) . '=' . uri_escape($data{$_})} keys %data;
 	}
 	return $self->_call('GET', $uri, undef, $args);
@@ -135,7 +135,7 @@ Catalyst::Model::REST - REST model class for Catalyst
 
 =head1 VERSION
 
-version 0.23
+version 0.24
 
 =head1 SYNOPSIS
 
