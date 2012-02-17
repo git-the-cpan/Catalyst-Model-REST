@@ -1,5 +1,8 @@
 Revision history for Catalyst-Model-REST
 
+0.25    2012-02-17 20:47:06 Europe/Copenhagen
+  - JSON data can be a hashref or an arrayref (Thanks to Alex Howarth for reporting)
+
 0.24    2011-10-10 19:23:36 Europe/Copenhagen
   - Better handling of the return content. Perhaps the content isn't
     deserializable
