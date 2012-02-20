@@ -27,15 +27,9 @@
       },
       "runtime" : {
          "requires" : {
-            "Carp" : 0,
             "Catalyst::Model" : 0,
-            "Data::Serializer" : 0,
-            "HTTP::Tiny" : 0,
             "Moose" : 0,
-            "Moose::Util::TypeConstraints" : 0,
-            "Try::Tiny" : 0,
-            "URI::Escape" : 0,
-            "perl" : "5.010"
+            "Role::REST::Client" : 0
          }
       },
       "test" : {
@@ -61,6 +55,6 @@
          "web" : "http://github.com/kaare/Catalyst-Model-REST"
       }
    },
-   "version" : "0.25"
+   "version" : "0.26"
 }
 

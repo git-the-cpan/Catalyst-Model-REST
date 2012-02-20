@@ -28,21 +28,15 @@ my %module_build_args = (
     "Kaare Rasmussen <kaare at cpan dot net>"
   ],
   "dist_name" => "Catalyst-Model-REST",
-  "dist_version" => "0.25",
+  "dist_version" => "0.26",
   "license" => "perl",
   "module_name" => "Catalyst::Model::REST",
   "recommends" => {},
   "recursive_test_files" => 1,
   "requires" => {
-    "Carp" => 0,
     "Catalyst::Model" => 0,
-    "Data::Serializer" => 0,
-    "HTTP::Tiny" => 0,
     "Moose" => 0,
-    "Moose::Util::TypeConstraints" => 0,
-    "Try::Tiny" => 0,
-    "URI::Escape" => 0,
-    "perl" => "5.010"
+    "Role::REST::Client" => 0
   },
   "script_files" => []
 );

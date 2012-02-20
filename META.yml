@@ -25,15 +25,9 @@ meta-spec:
   version: 1.4
 name: Catalyst-Model-REST
 requires:
-  Carp: 0
   Catalyst::Model: 0
-  Data::Serializer: 0
-  HTTP::Tiny: 0
   Moose: 0
-  Moose::Util::TypeConstraints: 0
-  Try::Tiny: 0
-  URI::Escape: 0
-  perl: 5.010
+  Role::REST::Client: 0
 resources:
   repository: git://github.com/kaare/Catalyst-Model-REST.git
-version: 0.25
+version: 0.26

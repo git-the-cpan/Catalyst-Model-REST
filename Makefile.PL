@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
-use 5.010;
+
 
 use ExtUtils::MakeMaker 6.30;
 
@@ -33,16 +33,11 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "Catalyst::Model::REST",
   "PREREQ_PM" => {
-    "Carp" => 0,
     "Catalyst::Model" => 0,
-    "Data::Serializer" => 0,
-    "HTTP::Tiny" => 0,
     "Moose" => 0,
-    "Moose::Util::TypeConstraints" => 0,
-    "Try::Tiny" => 0,
-    "URI::Escape" => 0
+    "Role::REST::Client" => 0
   },
-  "VERSION" => "0.25",
+  "VERSION" => "0.26",
   "test" => {
     "TESTS" => "t/*.t"
   }
