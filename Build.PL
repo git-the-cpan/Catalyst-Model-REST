@@ -28,7 +28,7 @@ my %module_build_args = (
     "Kaare Rasmussen <kaare at cpan dot net>"
   ],
   "dist_name" => "Catalyst-Model-REST",
-  "dist_version" => "0.26",
+  "dist_version" => "0.27",
   "license" => "perl",
   "module_name" => "Catalyst::Model::REST",
   "recommends" => {},

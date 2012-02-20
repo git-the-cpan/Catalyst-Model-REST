@@ -1,6 +1,6 @@
 package Catalyst::Model::REST;
 {
-  $Catalyst::Model::REST::VERSION = '0.26';
+  $Catalyst::Model::REST::VERSION = '0.27';
 }
 
 use Moose;
@@ -23,7 +23,7 @@ Catalyst::Model::REST - REST model class for Catalyst
 
 =head1 VERSION
 
-version 0.26
+version 0.27
 
 =head1 SYNOPSIS
 
@@ -58,7 +58,7 @@ For internal use
 
 =head1 DESCRIPTION
 
-This Catalyst Model class is a thin wrapper over L<Role::Model::Client>
+This Catalyst Model class is a thin wrapper over L<Role::REST::Client>
 
 Use this module if you need to talk to a REST server as a separate model.
 

@@ -37,7 +37,7 @@ my %WriteMakefileArgs = (
     "Moose" => 0,
     "Role::REST::Client" => 0
   },
-  "VERSION" => "0.26",
+  "VERSION" => "0.27",
   "test" => {
     "TESTS" => "t/*.t"
   }
